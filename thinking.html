@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="How Gabe Fonseca thinks about software engineering — principles, mental models, and what drives his approach to building systems." />
+  <title>How I Think · Gabe Fonseca</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome 6 (icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Tailwind custom config — matches index.html exactly -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary:   '#e2e8f0',
+            secondary: '#67e8f9',
+            accent:    '#94a3b8',
+            dark:      '#0a0a0a',
+            darker:    '#050505',
+            card:      '#111111',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['Fira Code', 'monospace'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <!-- Shared styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="bg-dark text-slate-100 font-sans antialiased">
+
+  <!-- Particle canvas (same as index.html) -->
+  <canvas id="particles-canvas" aria-hidden="true"></canvas>
+
+  <!-- ══════════════════════════════════════════════════════════
+       NAVIGATION
+       ══════════════════════════════════════════════════════════ -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="flex items-center justify-between h-16">
+
+        <!-- Back to portfolio -->
+        <a href="index.html" class="flex items-center gap-2 group text-slate-500 hover:text-slate-200 transition-colors text-sm font-medium">
+          <i class="fas fa-arrow-left text-xs transition-transform duration-300 group-hover:-translate-x-0.5"></i>
+          <span>Back to Portfolio</span>
+        </a>
+
+        <!-- Right side: logo (desktop) + hamburger (mobile) -->
+        <div class="flex items-center gap-3">
+          <a href="index.html" class="hidden md:flex items-center gap-2 group">
+            <div class="w-8 h-8 rounded-lg bg-white/6 border border-white/14 flex items-center justify-center text-white font-bold text-xs transition-all group-hover:border-white/28 group-hover:bg-white/10">
+              GF
+            </div>
+          </a>
+          <button id="menu-btn" class="md:hidden w-9 h-9 flex items-center justify-center rounded-lg bg-white/5 border border-white/10 text-slate-300 hover:text-white transition-colors" aria-label="Toggle menu">
+            <i id="menu-icon" class="fas fa-bars"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile menu (required for script.js compatibility) -->
+  <div id="mobile-menu" class="md:hidden fixed top-16 left-0 right-0 z-40">
+    <div class="max-w-3xl mx-auto px-6 py-4 flex flex-col gap-1">
+      <a href="index.html" class="nav-link py-3 text-base flex items-center gap-2">
+        <i class="fas fa-arrow-left text-xs"></i>
+        Back to Portfolio
+      </a>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       MAIN CONTENT
+       ══════════════════════════════════════════════════════════ -->
+  <main class="relative z-10 pt-28 pb-24 px-6">
+    <div class="max-w-3xl mx-auto">
+
+      <!-- ── Page Header ────────────────────────────────── -->
+      <header class="mb-20 reveal">
+        <span class="section-label">Engineering perspective</span>
+        <h1 class="text-4xl sm:text-5xl font-black leading-tight mb-6">
+          How I Think About <span class="gradient-text">Software</span>
+        </h1>
+        <p class="text-base sm:text-lg text-slate-400 leading-relaxed max-w-2xl">
+          A collection of ideas, principles, and mental models that shape how I approach
+          engineering problems. Not rigid rules — just patterns of thinking I've found
+          consistently useful.
+        </p>
+      </header>
+
+      <!-- ── Thinking Sections ───────────────────────────── -->
+      <div class="space-y-5">
+
+        <!-- 01 — Simplicity in Systems -->
+        <article class="glass-card p-7 sm:p-9 reveal">
+          <span class="text-mono text-xs text-slate-600 mb-4 block tracking-widest">01</span>
+          <h2 class="text-xl sm:text-2xl font-bold mb-4 text-slate-100">Simplicity in Systems</h2>
+          <p class="text-slate-400 leading-relaxed">
+            There is a constant temptation in software to add — more abstraction, more layers,
+            more configuration options. I try to resist it. The most resilient systems tend to be
+            the ones where every component earns its place. Complexity should be a deliberate choice
+            made under constraint, not a default side effect of building fast. When I review my own
+            code, the first question I ask is: <span class="text-slate-300 font-medium">what can I remove without breaking the intent?</span>
+          </p>
+        </article>
+
+        <!-- 02 — Systems Over Features -->
+        <article class="glass-card p-7 sm:p-9 reveal">
+          <span class="text-mono text-xs text-slate-600 mb-4 block tracking-widest">02</span>
+          <h2 class="text-xl sm:text-2xl font-bold mb-4 text-slate-100">Systems Over Features</h2>
+          <p class="text-slate-400 leading-relaxed">
+            It's relatively easy to ship a feature. It's much harder — and more valuable — to build
+            the system that makes the next ten features easy to ship. I care about both, but I believe
+            good engineers spend a disproportionate amount of energy thinking about architecture
+            relative to any individual feature. A well-designed system is a force multiplier;
+            a <span class="text-slate-300 font-medium">poorly-designed one compounds its cost with every change.</span>
+          </p>
+        </article>
+
+        <!-- 03 — Data and Decision Making -->
+        <article class="glass-card p-7 sm:p-9 reveal">
+          <span class="text-mono text-xs text-slate-600 mb-4 block tracking-widest">03</span>
+          <h2 class="text-xl sm:text-2xl font-bold mb-4 text-slate-100">Data and Decision Making</h2>
+          <p class="text-slate-400 leading-relaxed">
+            Data doesn't make decisions — people do. But engineers who understand the data flowing
+            through their systems tend to make better decisions than those who don't. Whether it's
+            query performance, error rates, or user behaviour patterns, I try to stay close to the
+            numbers. Not because data is always decisive, but because it
+            <span class="text-slate-300 font-medium">grounds reasoning in reality and keeps intuition honest.</span>
+          </p>
+        </article>
+
+        <!-- 04 — Learning by Building -->
+        <article class="glass-card p-7 sm:p-9 reveal">
+          <span class="text-mono text-xs text-slate-600 mb-4 block tracking-widest">04</span>
+          <h2 class="text-xl sm:text-2xl font-bold mb-4 text-slate-100">Learning by Building</h2>
+          <p class="text-slate-400 leading-relaxed">
+            Most of what I know, I learned by doing something that didn't work the first time.
+            Documentation teaches you syntax. Shipping broken code teaches you systems. I seek out
+            projects that are just slightly beyond my current ability — things that require me to
+            figure out new failure modes, not just apply existing patterns. The poker simulator
+            I built taught me more about probability than any statistics course ever did. The
+            <span class="text-slate-300 font-medium">discomfort of not knowing is usually where the real learning starts.</span>
+          </p>
+        </article>
+
+        <!-- 05 — Engineering Mindset -->
+        <article class="glass-card p-7 sm:p-9 reveal">
+          <span class="text-mono text-xs text-slate-600 mb-4 block tracking-widest">05</span>
+          <h2 class="text-xl sm:text-2xl font-bold mb-4 text-slate-100">The Engineering Mindset</h2>
+          <p class="text-slate-400 leading-relaxed">
+            Good engineering is as much about asking questions as it is about writing code.
+            What problem are we actually solving? What are the failure modes? Who maintains this
+            in six months? I've found that slowing down at the start of a problem — really
+            interrogating the requirements before touching the keyboard — consistently leads to
+            better outcomes than jumping straight to implementation.
+            <span class="text-slate-300 font-medium">The best code I've written started with a long pause.</span>
+          </p>
+        </article>
+
+      </div>
+
+      <!-- ── Divider ─────────────────────────────────────── -->
+      <div class="my-16"><div class="glow-divider"></div></div>
+
+      <!-- ── Currently Exploring ────────────────────────── -->
+      <section class="reveal">
+        <span class="section-label">On my radar</span>
+        <h2 class="text-2xl sm:text-3xl font-bold mb-2">
+          What I'm Currently <span class="gradient-text">Exploring</span>
+        </h2>
+        <p class="text-slate-500 text-sm mb-8 leading-relaxed">
+          Technologies and concepts I'm actively studying or building with right now.
+        </p>
+
+        <div class="grid sm:grid-cols-2 gap-4">
+
+          <div class="glass-card p-5 flex items-start gap-4">
+            <div class="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 flex-shrink-0">
+              <i class="fas fa-cloud text-sm"></i>
+            </div>
+            <div>
+              <div class="text-sm font-semibold text-slate-200 mb-1">Cloud & Infrastructure</div>
+              <div class="text-xs text-slate-500 leading-relaxed">
+                AWS services, cloud-native patterns, and distributed deployments at scale.
+              </div>
+            </div>
+          </div>
+
+          <div class="glass-card p-5 flex items-start gap-4">
+            <div class="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 flex-shrink-0">
+              <i class="fas fa-stream text-sm"></i>
+            </div>
+            <div>
+              <div class="text-sm font-semibold text-slate-200 mb-1">Event-Driven Systems</div>
+              <div class="text-xs text-slate-500 leading-relaxed">
+                Apache Kafka, message queues, and asynchronous architecture patterns.
+              </div>
+            </div>
+          </div>
+
+          <div class="glass-card p-5 flex items-start gap-4">
+            <div class="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 flex-shrink-0">
+              <i class="fas fa-microchip text-sm"></i>
+            </div>
+            <div>
+              <div class="text-sm font-semibold text-slate-200 mb-1">Rust</div>
+              <div class="text-xs text-slate-500 leading-relaxed">
+                Systems programming — memory safety, performance, and ownership models.
+              </div>
+            </div>
+          </div>
+
+          <div class="glass-card p-5 flex items-start gap-4">
+            <div class="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 flex-shrink-0">
+              <i class="fas fa-sitemap text-sm"></i>
+            </div>
+            <div>
+              <div class="text-sm font-semibold text-slate-200 mb-1">System Design</div>
+              <div class="text-xs text-slate-500 leading-relaxed">
+                Large-scale distributed systems, consistency models, and trade-off analysis.
+              </div>
+            </div>
+          </div>
+
+          <div class="glass-card p-5 flex items-start gap-4 sm:col-span-2">
+            <div class="w-9 h-9 rounded-lg border flex items-center justify-center flex-shrink-0" style="background: rgba(103,232,249,0.07); border-color: rgba(103,232,249,0.15);">
+              <i class="fas fa-brain text-sm" style="color: #67e8f9;"></i>
+            </div>
+            <div>
+              <div class="text-sm font-semibold text-slate-200 mb-1">LLM APIs & AI Tooling</div>
+              <div class="text-xs text-slate-500 leading-relaxed">
+                Integrating language models into developer workflows, understanding inference patterns,
+                and exploring what AI can practically do for backend systems today.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ── Closing note ────────────────────────────────── -->
+      <div class="mt-16 reveal">
+        <div class="glass-card p-6 sm:p-7 flex items-start gap-5">
+          <div class="w-9 h-9 rounded-xl bg-white/4 border border-white/8 flex items-center justify-center text-slate-600 flex-shrink-0 mt-0.5">
+            <i class="fas fa-terminal text-xs"></i>
+          </div>
+          <p class="text-slate-500 text-sm leading-relaxed">
+            These ideas evolve as I build more, read more, and break more things in development.
+            If something here resonates — or you want to push back on any of it —
+            <a href="index.html#contact" class="text-secondary hover:text-slate-200 transition-colors underline underline-offset-2 decoration-white/15">
+              I'd genuinely enjoy that conversation
+            </a>.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       FOOTER — identical to index.html
+       ══════════════════════════════════════════════════════════ -->
+  <footer class="py-12 px-6 relative z-10">
+    <div class="max-w-3xl mx-auto">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+
+        <!-- Brand -->
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-lg bg-white/6 border border-white/14 flex items-center justify-center text-white font-bold text-sm">
+            GF
+          </div>
+          <div>
+            <div class="font-bold text-sm text-slate-200">Gabe Fonseca</div>
+            <div class="text-xs text-slate-600">Software Engineer</div>
+          </div>
+        </div>
+
+        <!-- Copyright -->
+        <p class="text-xs text-slate-600 text-center">
+          © 2025 Gabe Fonseca. Built with <span class="text-secondary">♥</span> and too much coffee.
+        </p>
+
+        <!-- Social icons -->
+        <div class="flex items-center gap-2">
+          <a href="mailto:gabrielleitefonseca@gmail.com" class="social-link" aria-label="Email">
+            <i class="fas fa-envelope"></i>
+          </a>
+          <a href="https://github.com/gabefonseca" target="_blank" rel="noopener" class="social-link" aria-label="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://linkedin.com/in/gabefonseca" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="https://twitter.com/" target="_blank" rel="noopener" class="social-link" aria-label="Twitter">
+            <i class="fab fa-x-twitter"></i>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Bottom tagline -->
+      <div class="mt-8 pt-6 border-t border-white/5 text-center">
+        <p class="text-xs text-slate-700 font-mono">
+          // Always learning. Always building. Always shipping.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
