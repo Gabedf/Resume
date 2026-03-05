@@ -23,12 +23,12 @@
       theme: {
         extend: {
           colors: {
-            primary:   '#6366f1',
-            secondary: '#22d3ee',
-            accent:    '#a855f7',
-            dark:      '#0a0f1e',
-            darker:    '#060a14',
-            card:      '#0d1527',
+            primary:   '#e2e8f0',   /* silver-white  */
+            secondary: '#67e8f9',   /* ice cyan      */
+            accent:    '#94a3b8',   /* slate         */
+            dark:      '#0a0a0a',   /* near-black    */
+            darker:    '#050505',   /* deep black    */
+            card:      '#111111',   /* surface       */
           },
           fontFamily: {
             sans: ['Inter', 'sans-serif'],
@@ -60,10 +60,10 @@
 
         <!-- Logo / brand -->
         <a href="#hero" class="flex items-center gap-2 group">
-          <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-primary/30 group-hover:shadow-primary/50 transition-shadow">
+          <div class="w-9 h-9 rounded-lg bg-white/6 border border-white/14 flex items-center justify-center text-white font-bold text-sm transition-all group-hover:border-white/28 group-hover:bg-white/10">
             GF
           </div>
-          <span class="font-bold text-sm tracking-wide hidden sm:block">Gabe Fonseca</span>
+          <span class="font-bold text-sm tracking-wide hidden sm:block text-slate-200">Gabe Fonseca</span>
         </a>
 
         <!-- Desktop nav links -->
@@ -89,17 +89,24 @@
       </div>
     </div>
 
-    <!-- Mobile menu -->
-    <div id="mobile-menu">
-      <div class="max-w-6xl mx-auto px-6 py-4 flex flex-col gap-1">
-        <a href="#about"    class="nav-link py-3 border-b border-white/5">About</a>
-        <a href="#skills"   class="nav-link py-3 border-b border-white/5">Skills</a>
-        <a href="#projects" class="nav-link py-3 border-b border-white/5">Projects</a>
-        <a href="#journey"  class="nav-link py-3 border-b border-white/5">Journey</a>
-        <a href="#contact"  class="nav-link py-3">Contact</a>
+  </nav>
+
+  <!-- Mobile Navigation Menu -->
+  <div id="mobile-menu" class="md:hidden fixed top-16 left-0 right-0 z-40">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex flex-col gap-1">
+      <a href="#about"    class="nav-link py-3 text-base">About</a>
+      <a href="#skills"   class="nav-link py-3 text-base">Skills</a>
+      <a href="#projects" class="nav-link py-3 text-base">Projects</a>
+      <a href="#journey"  class="nav-link py-3 text-base">Journey</a>
+      <a href="#contact"  class="nav-link py-3 text-base">Contact</a>
+      <div class="pt-3 mt-1 border-t border-white/8">
+        <a href="#contact" class="btn-primary text-sm inline-flex w-full justify-center py-2.5">
+          <span>Hire Me</span>
+          <i class="fas fa-arrow-right text-xs"></i>
+        </a>
       </div>
     </div>
-  </nav>
+  </div>
 
 
   <!-- ══════════════════════════════════════════════════════════
@@ -171,9 +178,9 @@
     </div>
 
     <!-- Scroll indicator -->
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-600 text-xs animate-bounce">
-      <span class="text-mono">scroll</span>
-      <i class="fas fa-chevron-down text-primary"></i>
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-700 text-xs animate-bounce">
+      <span class="text-mono tracking-widest uppercase" style="font-size:0.65rem;">scroll</span>
+      <i class="fas fa-chevron-down text-slate-600 text-xs"></i>
     </div>
   </section>
 
@@ -196,11 +203,11 @@
         <div class="reveal-left flex justify-center">
           <div class="relative">
             <!-- Glow ring -->
-            <div class="absolute -inset-4 rounded-3xl bg-gradient-to-br from-primary/20 via-accent/10 to-secondary/15 blur-2xl"></div>
+            <div class="absolute -inset-4 rounded-3xl bg-gradient-to-br from-white/6 via-secondary/5 to-accent/5 blur-2xl"></div>
             <!-- Card -->
             <div class="relative glass-card p-8 rounded-3xl max-w-sm w-full">
               <!-- Avatar placeholder -->
-              <div class="w-24 h-24 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center text-4xl font-black text-white mb-6 shadow-xl shadow-primary/30">
+              <div class="w-24 h-24 rounded-2xl bg-[#0f0f0f] border border-white/12 flex items-center justify-center text-4xl font-black text-white mb-6" style="box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 0 0 1px rgba(255,255,255,0.04);">
                 GF
               </div>
               <h3 class="text-xl font-bold mb-1">Gabe Fonseca</h3>
@@ -358,46 +365,46 @@
 
       <!-- Proficiency bars (bonus visual) -->
       <div class="mt-12 glass-card p-8 reveal">
-        <h3 class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-6">Core Proficiency</h3>
-        <div class="space-y-4">
+        <h3 class="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-6">Core Proficiency</h3>
+        <div class="space-y-5">
           <!-- Java -->
           <div>
-            <div class="flex justify-between text-sm mb-1.5">
+            <div class="flex justify-between text-sm mb-2">
               <span class="font-medium text-slate-300">Java / Spring Boot</span>
               <span class="text-mono text-secondary text-xs">90%</span>
             </div>
-            <div class="h-2 bg-white/5 rounded-full overflow-hidden">
-              <div class="h-full rounded-full bg-gradient-to-r from-primary to-accent" style="width:90%; transition: width 1.5s ease 0.3s;"></div>
+            <div class="h-px bg-white/6 rounded-full overflow-hidden">
+              <div class="h-full rounded-full" style="width:90%; background: linear-gradient(90deg, #e2e8f0, #67e8f9); transition: width 1.5s ease 0.3s;"></div>
             </div>
           </div>
           <!-- Python -->
           <div>
-            <div class="flex justify-between text-sm mb-1.5">
+            <div class="flex justify-between text-sm mb-2">
               <span class="font-medium text-slate-300">Python / Data</span>
               <span class="text-mono text-secondary text-xs">82%</span>
             </div>
-            <div class="h-2 bg-white/5 rounded-full overflow-hidden">
-              <div class="h-full rounded-full bg-gradient-to-r from-secondary to-primary" style="width:82%; transition: width 1.5s ease 0.45s;"></div>
+            <div class="h-px bg-white/6 rounded-full overflow-hidden">
+              <div class="h-full rounded-full" style="width:82%; background: linear-gradient(90deg, #67e8f9, #e2e8f0); transition: width 1.5s ease 0.45s;"></div>
             </div>
           </div>
           <!-- JavaScript -->
           <div>
-            <div class="flex justify-between text-sm mb-1.5">
+            <div class="flex justify-between text-sm mb-2">
               <span class="font-medium text-slate-300">JavaScript / Node.js</span>
               <span class="text-mono text-secondary text-xs">75%</span>
             </div>
-            <div class="h-2 bg-white/5 rounded-full overflow-hidden">
-              <div class="h-full rounded-full bg-gradient-to-r from-accent to-secondary" style="width:75%; transition: width 1.5s ease 0.6s;"></div>
+            <div class="h-px bg-white/6 rounded-full overflow-hidden">
+              <div class="h-full rounded-full" style="width:75%; background: linear-gradient(90deg, #94a3b8, #67e8f9); transition: width 1.5s ease 0.6s;"></div>
             </div>
           </div>
           <!-- SQL -->
           <div>
-            <div class="flex justify-between text-sm mb-1.5">
+            <div class="flex justify-between text-sm mb-2">
               <span class="font-medium text-slate-300">SQL / Databases</span>
               <span class="text-mono text-secondary text-xs">80%</span>
             </div>
-            <div class="h-2 bg-white/5 rounded-full overflow-hidden">
-              <div class="h-full rounded-full bg-gradient-to-r from-primary to-secondary" style="width:80%; transition: width 1.5s ease 0.75s;"></div>
+            <div class="h-px bg-white/6 rounded-full overflow-hidden">
+              <div class="h-full rounded-full" style="width:80%; background: linear-gradient(90deg, #e2e8f0, #94a3b8); transition: width 1.5s ease 0.75s;"></div>
             </div>
           </div>
         </div>
@@ -430,7 +437,7 @@
 
         <!-- Project 1: Financial Management System -->
         <div class="project-card reveal">
-          <div class="project-card-header" style="background: linear-gradient(135deg, #0f1e3a 0%, #1a1040 100%);">
+          <div class="project-card-header" style="background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);">
             <div class="project-icon">💰</div>
           </div>
           <div class="project-body">
@@ -461,7 +468,7 @@
 
         <!-- Project 2: Task Manager Web App -->
         <div class="project-card reveal">
-          <div class="project-card-header" style="background: linear-gradient(135deg, #0d1f2d 0%, #0f2a1a 100%);">
+          <div class="project-card-header" style="background: linear-gradient(135deg, #0f1810 0%, #1a1a1a 100%);">
             <div class="project-icon">✅</div>
           </div>
           <div class="project-body">
@@ -492,7 +499,7 @@
 
         <!-- Project 3: Data Analysis Dashboard -->
         <div class="project-card reveal">
-          <div class="project-card-header" style="background: linear-gradient(135deg, #1a0a2e 0%, #0a1a2e 100%);">
+          <div class="project-card-header" style="background: linear-gradient(135deg, #0f1a1a 0%, #1a1a1a 100%);">
             <div class="project-icon">📊</div>
           </div>
           <div class="project-body">
@@ -523,7 +530,7 @@
 
         <!-- Project 4: Poker Simulator -->
         <div class="project-card reveal">
-          <div class="project-card-header" style="background: linear-gradient(135deg, #1a1000 0%, #2a0a10 100%);">
+          <div class="project-card-header" style="background: linear-gradient(135deg, #1a1010 0%, #1a1a1a 100%);">
             <div class="project-icon">🃏</div>
           </div>
           <div class="project-body">
@@ -588,7 +595,7 @@
         <!-- Left: Timeline -->
         <div class="reveal-left">
           <h3 class="text-lg font-bold mb-8 text-slate-300 flex items-center gap-2">
-            <i class="fas fa-briefcase text-primary text-sm"></i> Experience & Education
+            <i class="fas fa-briefcase text-slate-400 text-sm"></i> Experience & Education
           </h3>
 
           <div class="timeline">
@@ -653,7 +660,7 @@
         <div class="reveal-right space-y-6">
 
           <h3 class="text-lg font-bold text-slate-300 flex items-center gap-2">
-            <i class="fas fa-star text-secondary text-sm"></i> What Drives Me
+            <i class="fas fa-star text-slate-500 text-sm"></i> What Drives Me
           </h3>
 
           <!-- Value cards -->
@@ -741,23 +748,23 @@
             </div>
           </a>
 
-          <a href="https://linkedin.com/in/gabefonseca" target="_blank" rel="noopener" class="contact-info-item">
+          <a href="https://www.linkedin.com/in/gabriel-leite-fonseca/" target="_blank" rel="noopener" class="contact-info-item">
             <div class="contact-icon bg-blue-500/15 text-blue-400">
               <i class="fab fa-linkedin-in"></i>
             </div>
             <div>
               <div class="text-xs text-slate-500 mb-0.5 uppercase tracking-wider">LinkedIn</div>
-              <div class="text-sm font-semibold">linkedin.com/in/gabefonseca</div>
+              <div class="text-sm font-semibold">linkedin.com/in/gabriel-leite-fonseca</div>
             </div>
           </a>
 
-          <a href="https://github.com/gabefonseca" target="_blank" rel="noopener" class="contact-info-item">
+          <a href="https://github.com/Gabedf" target="_blank" rel="noopener" class="contact-info-item">
             <div class="contact-icon bg-white/8 text-slate-300">
               <i class="fab fa-github"></i>
             </div>
             <div>
               <div class="text-xs text-slate-500 mb-0.5 uppercase tracking-wider">GitHub</div>
-              <div class="text-sm font-semibold">github.com/gabefonseca</div>
+              <div class="text-sm font-semibold">github.com/Gabedf</div>
             </div>
           </a>
 
@@ -827,18 +834,18 @@
 
         <!-- Brand -->
         <div class="flex items-center gap-3">
-          <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold text-sm">
+          <div class="w-9 h-9 rounded-lg bg-white/6 border border-white/14 flex items-center justify-center text-white font-bold text-sm">
             GF
           </div>
           <div>
-            <div class="font-bold text-sm">Gabe Fonseca</div>
+            <div class="font-bold text-sm text-slate-200">Gabe Fonseca</div>
             <div class="text-xs text-slate-600">Software Engineer</div>
           </div>
         </div>
 
         <!-- Copyright -->
         <p class="text-xs text-slate-600 text-center">
-          © 2025 Gabe Fonseca. Built with <span class="text-primary">♥</span> and too much coffee.
+          © 2025 Gabe Fonseca. Built with <span class="text-secondary">♥</span> and too much coffee.
         </p>
 
         <!-- Social icons -->
