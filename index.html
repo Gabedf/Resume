@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Gabe Fonseca — Software Engineer specialising in backend systems, data engineering and problem solving." />
+  <title>Gabe Fonseca · Software Engineer</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome 6 (icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Tailwind custom config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary:   '#6366f1',
+            secondary: '#22d3ee',
+            accent:    '#a855f7',
+            dark:      '#0a0f1e',
+            darker:    '#060a14',
+            card:      '#0d1527',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['Fira Code', 'monospace'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<!-- ============================================================
+     BODY
+     ============================================================ -->
+<body class="bg-dark text-slate-100 font-sans antialiased">
+
+  <!-- Particle canvas (fixed, behind everything) -->
+  <canvas id="particles-canvas" aria-hidden="true"></canvas>
+
+  <!-- ══════════════════════════════════════════════════════════
+       NAVIGATION
+       ══════════════════════════════════════════════════════════ -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex items-center justify-between h-16">
+
+        <!-- Logo / brand -->
+        <a href="#hero" class="flex items-center gap-2 group">
+          <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-primary/30 group-hover:shadow-primary/50 transition-shadow">
+            GF
+          </div>
+          <span class="font-bold text-sm tracking-wide hidden sm:block">Gabe Fonseca</span>
+        </a>
+
+        <!-- Desktop nav links -->
+        <div class="hidden md:flex items-center gap-7">
+          <a href="#about"    class="nav-link">About</a>
+          <a href="#skills"   class="nav-link">Skills</a>
+          <a href="#projects" class="nav-link">Projects</a>
+          <a href="#journey"  class="nav-link">Journey</a>
+          <a href="#contact"  class="nav-link">Contact</a>
+        </div>
+
+        <!-- CTA + hamburger -->
+        <div class="flex items-center gap-3">
+          <a href="#contact" class="hidden md:inline-flex btn-primary text-sm py-2 px-5">
+            <span>Hire Me</span>
+            <i class="fas fa-arrow-right text-xs"></i>
+          </a>
+          <button id="menu-btn" class="md:hidden w-9 h-9 flex items-center justify-center rounded-lg bg-white/5 border border-white/10 text-slate-300 hover:text-white transition-colors" aria-label="Toggle menu">
+            <i id="menu-icon" class="fas fa-bars"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu">
+      <div class="max-w-6xl mx-auto px-6 py-4 flex flex-col gap-1">
+        <a href="#about"    class="nav-link py-3 border-b border-white/5">About</a>
+        <a href="#skills"   class="nav-link py-3 border-b border-white/5">Skills</a>
+        <a href="#projects" class="nav-link py-3 border-b border-white/5">Projects</a>
+        <a href="#journey"  class="nav-link py-3 border-b border-white/5">Journey</a>
+        <a href="#contact"  class="nav-link py-3">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       1. HERO SECTION
+       ══════════════════════════════════════════════════════════ -->
+  <section id="hero" class="hero-bg relative min-h-screen flex items-center justify-center overflow-hidden grid-pattern">
+
+    <!-- Animated gradient orbs -->
+    <div class="hero-orb hero-orb-1" aria-hidden="true"></div>
+    <div class="hero-orb hero-orb-2" aria-hidden="true"></div>
+    <div class="hero-orb hero-orb-3" aria-hidden="true"></div>
+
+    <div class="relative z-10 max-w-4xl mx-auto px-6 text-center pt-24 pb-16">
+
+      <!-- Availability badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 text-xs font-semibold mb-8 reveal">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        Available for opportunities
+      </div>
+
+      <!-- Main headline -->
+      <h1 class="text-5xl sm:text-6xl md:text-7xl font-black leading-tight mb-5 reveal" style="transition-delay:0.1s">
+        Hi, I'm
+        <span class="gradient-text block sm:inline"> Gabe Fonseca</span>
+      </h1>
+
+      <!-- Typed subtitle -->
+      <div class="text-xl sm:text-2xl font-semibold text-slate-300 mb-5 h-9 reveal" style="transition-delay:0.2s">
+        <span id="typed-text" class="gradient-text-2"></span><span class="typed-cursor" aria-hidden="true"></span>
+      </div>
+
+      <!-- Value proposition -->
+      <p class="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed mb-10 reveal" style="transition-delay:0.3s">
+        I build robust, scalable systems and turn complex problems into clean, elegant solutions.
+        Passionate about backend engineering, data pipelines, and writing code that
+        <span class="text-secondary font-semibold">actually ships</span>.
+      </p>
+
+      <!-- CTA buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14 reveal" style="transition-delay:0.4s">
+        <a href="#projects" class="btn-primary text-base w-full sm:w-auto justify-center">
+          <span>View Projects</span>
+          <i class="fas fa-rocket text-sm"></i>
+        </a>
+        <a href="#contact" class="btn-outline text-base w-full sm:w-auto justify-center">
+          <i class="fas fa-envelope text-sm"></i>
+          <span>Contact Me</span>
+        </a>
+      </div>
+
+      <!-- Quick stat bar -->
+      <div class="flex items-center justify-center gap-8 sm:gap-12 reveal" style="transition-delay:0.5s">
+        <div class="text-center">
+          <div class="text-2xl font-black gradient-text">4+</div>
+          <div class="text-xs text-slate-500 mt-0.5 uppercase tracking-wider">Projects</div>
+        </div>
+        <div class="w-px h-10 bg-white/10"></div>
+        <div class="text-center">
+          <div class="text-2xl font-black gradient-text">5+</div>
+          <div class="text-xs text-slate-500 mt-0.5 uppercase tracking-wider">Technologies</div>
+        </div>
+        <div class="w-px h-10 bg-white/10"></div>
+        <div class="text-center">
+          <div class="text-2xl font-black gradient-text">∞</div>
+          <div class="text-xs text-slate-500 mt-0.5 uppercase tracking-wider">Curiosity</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-600 text-xs animate-bounce">
+      <span class="text-mono">scroll</span>
+      <i class="fas fa-chevron-down text-primary"></i>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       2. ABOUT ME
+       ══════════════════════════════════════════════════════════ -->
+  <section id="about" class="section-bg-alt py-24 px-6 relative">
+    <div class="max-w-6xl mx-auto">
+
+      <!-- Section header -->
+      <div class="text-center mb-16 reveal">
+        <span class="section-label">Get to know me</span>
+        <h2 class="text-3xl sm:text-4xl font-bold">About <span class="gradient-text">Me</span></h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+
+        <!-- Avatar / visual side -->
+        <div class="reveal-left flex justify-center">
+          <div class="relative">
+            <!-- Glow ring -->
+            <div class="absolute -inset-4 rounded-3xl bg-gradient-to-br from-primary/20 via-accent/10 to-secondary/15 blur-2xl"></div>
+            <!-- Card -->
+            <div class="relative glass-card p-8 rounded-3xl max-w-sm w-full">
+              <!-- Avatar placeholder -->
+              <div class="w-24 h-24 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center text-4xl font-black text-white mb-6 shadow-xl shadow-primary/30">
+                GF
+              </div>
+              <h3 class="text-xl font-bold mb-1">Gabe Fonseca</h3>
+              <p class="text-sm text-secondary font-mono mb-4">Software Engineer</p>
+              <p class="text-sm text-slate-400 leading-relaxed">
+                Computer Science student with a genuine passion for building things that work — from REST APIs to data pipelines.
+              </p>
+              <!-- Tags -->
+              <div class="flex flex-wrap gap-2 mt-5">
+                <span class="badge">Backend</span>
+                <span class="badge">Data</span>
+                <span class="badge">Open Source</span>
+                <span class="badge">Problem Solver</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Text side -->
+        <div class="reveal-right">
+          <h3 class="text-2xl font-bold mb-4 leading-snug">
+            Turning ideas into <span class="gradient-text">real systems</span> since day one.
+          </h3>
+          <div class="space-y-4 text-slate-400 leading-relaxed text-sm sm:text-base">
+            <p>
+              I'm a Computer Science / Information Systems student with a deep interest in backend
+              development and data engineering. I thrive in environments where performance, reliability,
+              and clean architecture matter — and I take pride in writing code that other people
+              can actually read and maintain.
+            </p>
+            <p>
+              My engineering philosophy centres on <span class="text-slate-200 font-medium">understanding systems deeply</span>
+              before building them. Whether it's designing a RESTful API, modelling a relational database, or
+              wrangling messy datasets, I approach every problem with curiosity and structured thinking.
+            </p>
+            <p>
+              Outside of code I enjoy competitive programming, exploring machine learning concepts, and
+              building side projects that scratch real itches — like a
+              <span class="text-secondary font-mono text-sm">poker simulator</span> that taught me
+              more about probability than any textbook.
+            </p>
+          </div>
+
+          <!-- Stats row -->
+          <div class="grid grid-cols-3 gap-4 mt-8 stagger-children">
+            <div class="about-stat glass-card p-4 reveal">
+              <div class="stat-number">3+</div>
+              <div class="stat-label">Years coding</div>
+            </div>
+            <div class="about-stat glass-card p-4 reveal">
+              <div class="stat-number">10+</div>
+              <div class="stat-label">Technologies</div>
+            </div>
+            <div class="about-stat glass-card p-4 reveal">
+              <div class="stat-number">100%</div>
+              <div class="stat-label">Committed</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="py-2"><div class="glow-divider"></div></div>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       3. SKILLS SECTION
+       ══════════════════════════════════════════════════════════ -->
+  <section id="skills" class="py-24 px-6 relative">
+    <div class="max-w-6xl mx-auto">
+
+      <!-- Section header -->
+      <div class="text-center mb-16 reveal">
+        <span class="section-label">What I work with</span>
+        <h2 class="text-3xl sm:text-4xl font-bold">Tech <span class="gradient-text">Stack</span></h2>
+        <p class="text-slate-500 mt-3 max-w-xl mx-auto text-sm">
+          A collection of languages, frameworks and tools I use to build things worth shipping.
+        </p>
+      </div>
+
+      <!-- Skills grid -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 stagger-children">
+
+        <!-- Languages -->
+        <div class="skill-category-card reveal">
+          <div class="skill-category-title">
+            <div class="skill-icon-wrap bg-primary/15 text-primary">
+              <i class="fas fa-code"></i>
+            </div>
+            <span>Languages</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-pill"><span>☕</span> Java</span>
+            <span class="skill-pill"><span>🐍</span> Python</span>
+            <span class="skill-pill"><span>🟨</span> JavaScript</span>
+            <span class="skill-pill"><span>⚙️</span> C</span>
+            <span class="skill-pill"><span>🗃️</span> SQL</span>
+          </div>
+        </div>
+
+        <!-- Backend -->
+        <div class="skill-category-card reveal">
+          <div class="skill-category-title">
+            <div class="skill-icon-wrap bg-secondary/15 text-secondary">
+              <i class="fas fa-server"></i>
+            </div>
+            <span>Backend</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-pill"><span>🌿</span> Spring Boot</span>
+            <span class="skill-pill"><span>🔗</span> REST APIs</span>
+            <span class="skill-pill"><span>🟢</span> Node.js</span>
+            <span class="skill-pill"><span>🔐</span> Auth / JWT</span>
+            <span class="skill-pill"><span>🗄️</span> PostgreSQL</span>
+          </div>
+        </div>
+
+        <!-- Data -->
+        <div class="skill-category-card reveal">
+          <div class="skill-category-title">
+            <div class="skill-icon-wrap bg-accent/15 text-accent">
+              <i class="fas fa-chart-bar"></i>
+            </div>
+            <span>Data</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-pill"><span>📊</span> Data Analysis</span>
+            <span class="skill-pill"><span>🐼</span> Pandas</span>
+            <span class="skill-pill"><span>🔢</span> NumPy</span>
+            <span class="skill-pill"><span>🤖</span> ML Basics</span>
+            <span class="skill-pill"><span>📈</span> Matplotlib</span>
+          </div>
+        </div>
+
+        <!-- Tools -->
+        <div class="skill-category-card reveal">
+          <div class="skill-category-title">
+            <div class="skill-icon-wrap bg-emerald-500/15 text-emerald-400">
+              <i class="fas fa-tools"></i>
+            </div>
+            <span>Tools & DevOps</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-pill"><span>🐙</span> Git / GitHub</span>
+            <span class="skill-pill"><span>🐳</span> Docker</span>
+            <span class="skill-pill"><span>🐧</span> Linux</span>
+            <span class="skill-pill"><span>🔁</span> CI/CD</span>
+            <span class="skill-pill"><span>📦</span> Maven</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Proficiency bars (bonus visual) -->
+      <div class="mt-12 glass-card p-8 reveal">
+        <h3 class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-6">Core Proficiency</h3>
+        <div class="space-y-4">
+          <!-- Java -->
+          <div>
+            <div class="flex justify-between text-sm mb-1.5">
+              <span class="font-medium text-slate-300">Java / Spring Boot</span>
+              <span class="text-mono text-secondary text-xs">90%</span>
+            </div>
+            <div class="h-2 bg-white/5 rounded-full overflow-hidden">
+              <div class="h-full rounded-full bg-gradient-to-r from-primary to-accent" style="width:90%; transition: width 1.5s ease 0.3s;"></div>
+            </div>
+          </div>
+          <!-- Python -->
+          <div>
+            <div class="flex justify-between text-sm mb-1.5">
+              <span class="font-medium text-slate-300">Python / Data</span>
+              <span class="text-mono text-secondary text-xs">82%</span>
+            </div>
+            <div class="h-2 bg-white/5 rounded-full overflow-hidden">
+              <div class="h-full rounded-full bg-gradient-to-r from-secondary to-primary" style="width:82%; transition: width 1.5s ease 0.45s;"></div>
+            </div>
+          </div>
+          <!-- JavaScript -->
+          <div>
+            <div class="flex justify-between text-sm mb-1.5">
+              <span class="font-medium text-slate-300">JavaScript / Node.js</span>
+              <span class="text-mono text-secondary text-xs">75%</span>
+            </div>
+            <div class="h-2 bg-white/5 rounded-full overflow-hidden">
+              <div class="h-full rounded-full bg-gradient-to-r from-accent to-secondary" style="width:75%; transition: width 1.5s ease 0.6s;"></div>
+            </div>
+          </div>
+          <!-- SQL -->
+          <div>
+            <div class="flex justify-between text-sm mb-1.5">
+              <span class="font-medium text-slate-300">SQL / Databases</span>
+              <span class="text-mono text-secondary text-xs">80%</span>
+            </div>
+            <div class="h-2 bg-white/5 rounded-full overflow-hidden">
+              <div class="h-full rounded-full bg-gradient-to-r from-primary to-secondary" style="width:80%; transition: width 1.5s ease 0.75s;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="py-2"><div class="glow-divider"></div></div>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       4. PROJECTS SECTION
+       ══════════════════════════════════════════════════════════ -->
+  <section id="projects" class="section-bg-alt py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+
+      <!-- Section header -->
+      <div class="text-center mb-16 reveal">
+        <span class="section-label">What I've built</span>
+        <h2 class="text-3xl sm:text-4xl font-bold">Featured <span class="gradient-text">Projects</span></h2>
+        <p class="text-slate-500 mt-3 max-w-xl mx-auto text-sm">
+          A selection of projects that showcase my problem-solving approach and technical range.
+        </p>
+      </div>
+
+      <!-- Projects grid -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-2 gap-6 stagger-children">
+
+        <!-- Project 1: Financial Management System -->
+        <div class="project-card reveal">
+          <div class="project-card-header" style="background: linear-gradient(135deg, #0f1e3a 0%, #1a1040 100%);">
+            <div class="project-icon">💰</div>
+          </div>
+          <div class="project-body">
+            <div class="flex items-start justify-between mb-2">
+              <h3 class="project-title">Financial Management System</h3>
+              <span class="badge ml-2 flex-shrink-0">Backend</span>
+            </div>
+            <p class="project-desc">
+              A full-stack financial tracking application with transaction management, budget analytics,
+              and monthly reporting. Featuring JWT authentication and a RESTful API.
+            </p>
+            <div class="flex flex-wrap gap-1.5 mt-auto">
+              <span class="tech-tag">Java</span>
+              <span class="tech-tag">Spring Boot</span>
+              <span class="tech-tag">PostgreSQL</span>
+              <span class="tech-tag">REST API</span>
+            </div>
+          </div>
+          <div class="project-actions">
+            <a href="#" class="project-btn project-btn-primary">
+              <i class="fas fa-external-link-alt text-xs"></i> View Project
+            </a>
+            <a href="#" class="project-btn project-btn-ghost">
+              <i class="fab fa-github"></i> GitHub
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 2: Task Manager Web App -->
+        <div class="project-card reveal">
+          <div class="project-card-header" style="background: linear-gradient(135deg, #0d1f2d 0%, #0f2a1a 100%);">
+            <div class="project-icon">✅</div>
+          </div>
+          <div class="project-body">
+            <div class="flex items-start justify-between mb-2">
+              <h3 class="project-title">Task Manager Web App</h3>
+              <span class="badge ml-2 flex-shrink-0">Full Stack</span>
+            </div>
+            <p class="project-desc">
+              A productivity-focused task management platform with real-time updates, priority queues,
+              tagging system, and drag-and-drop kanban board interface.
+            </p>
+            <div class="flex flex-wrap gap-1.5 mt-auto">
+              <span class="tech-tag">Node.js</span>
+              <span class="tech-tag">JavaScript</span>
+              <span class="tech-tag">MongoDB</span>
+              <span class="tech-tag">REST API</span>
+            </div>
+          </div>
+          <div class="project-actions">
+            <a href="#" class="project-btn project-btn-primary">
+              <i class="fas fa-external-link-alt text-xs"></i> View Project
+            </a>
+            <a href="#" class="project-btn project-btn-ghost">
+              <i class="fab fa-github"></i> GitHub
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 3: Data Analysis Dashboard -->
+        <div class="project-card reveal">
+          <div class="project-card-header" style="background: linear-gradient(135deg, #1a0a2e 0%, #0a1a2e 100%);">
+            <div class="project-icon">📊</div>
+          </div>
+          <div class="project-body">
+            <div class="flex items-start justify-between mb-2">
+              <h3 class="project-title">Data Analysis Dashboard</h3>
+              <span class="badge ml-2 flex-shrink-0">Data</span>
+            </div>
+            <p class="project-desc">
+              Interactive data exploration dashboard built with Python. Performs ETL pipelines,
+              statistical analysis, and renders dynamic visualisations from real-world datasets.
+            </p>
+            <div class="flex flex-wrap gap-1.5 mt-auto">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">Pandas</span>
+              <span class="tech-tag">Matplotlib</span>
+              <span class="tech-tag">NumPy</span>
+            </div>
+          </div>
+          <div class="project-actions">
+            <a href="#" class="project-btn project-btn-primary">
+              <i class="fas fa-external-link-alt text-xs"></i> View Project
+            </a>
+            <a href="#" class="project-btn project-btn-ghost">
+              <i class="fab fa-github"></i> GitHub
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 4: Poker Simulator -->
+        <div class="project-card reveal">
+          <div class="project-card-header" style="background: linear-gradient(135deg, #1a1000 0%, #2a0a10 100%);">
+            <div class="project-icon">🃏</div>
+          </div>
+          <div class="project-body">
+            <div class="flex items-start justify-between mb-2">
+              <h3 class="project-title">Poker Simulator (Python)</h3>
+              <span class="badge ml-2 flex-shrink-0">Simulation</span>
+            </div>
+            <p class="project-desc">
+              A Monte Carlo poker hand evaluator that simulates millions of games to calculate
+              win probabilities, expected value, and optimal decision trees for Texas Hold'em.
+            </p>
+            <div class="flex flex-wrap gap-1.5 mt-auto">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">Monte Carlo</span>
+              <span class="tech-tag">OOP</span>
+              <span class="tech-tag">Statistics</span>
+            </div>
+          </div>
+          <div class="project-actions">
+            <a href="#" class="project-btn project-btn-primary">
+              <i class="fas fa-external-link-alt text-xs"></i> View Project
+            </a>
+            <a href="#" class="project-btn project-btn-ghost">
+              <i class="fab fa-github"></i> GitHub
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- View all CTA -->
+      <div class="text-center mt-10 reveal">
+        <a href="https://github.com/" target="_blank" rel="noopener" class="btn-outline inline-flex">
+          <i class="fab fa-github"></i>
+          <span>View all on GitHub</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="py-2"><div class="glow-divider"></div></div>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       5. EXPERIENCE / JOURNEY (Timeline)
+       ══════════════════════════════════════════════════════════ -->
+  <section id="journey" class="py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+
+      <!-- Section header -->
+      <div class="text-center mb-16 reveal">
+        <span class="section-label">My path so far</span>
+        <h2 class="text-3xl sm:text-4xl font-bold">The <span class="gradient-text">Journey</span></h2>
+        <p class="text-slate-500 mt-3 max-w-xl mx-auto text-sm">
+          Every line of code, every late-night debug session, every shipped feature — it all adds up.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-12 items-start">
+
+        <!-- Left: Timeline -->
+        <div class="reveal-left">
+          <h3 class="text-lg font-bold mb-8 text-slate-300 flex items-center gap-2">
+            <i class="fas fa-briefcase text-primary text-sm"></i> Experience & Education
+          </h3>
+
+          <div class="timeline">
+
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-card">
+                <div class="timeline-year">2024 – Present</div>
+                <div class="timeline-role">Software Engineering Intern</div>
+                <div class="timeline-company">Tech Company · São Paulo, BR</div>
+                <div class="timeline-desc">
+                  Contributing to backend microservices using Spring Boot and PostgreSQL.
+                  Implemented new REST endpoints, improved API response times by 30%,
+                  and participated in agile sprints and code reviews.
+                </div>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-card">
+                <div class="timeline-year">2022 – Present</div>
+                <div class="timeline-role">B.Sc. Computer Science / Information Systems</div>
+                <div class="timeline-company">University · Brazil</div>
+                <div class="timeline-desc">
+                  Studying algorithms, data structures, software engineering, databases,
+                  and operating systems. Active in extracurricular projects and hackathons.
+                </div>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-card">
+                <div class="timeline-year">2023</div>
+                <div class="timeline-role">Freelance Developer</div>
+                <div class="timeline-company">Self-employed · Remote</div>
+                <div class="timeline-desc">
+                  Built custom web applications and automation scripts for small businesses.
+                  Delivered projects on time, managing requirements directly with clients.
+                </div>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-card">
+                <div class="timeline-year">2021 – 2022</div>
+                <div class="timeline-role">Self-taught Developer</div>
+                <div class="timeline-company">Personal Projects</div>
+                <div class="timeline-desc">
+                  Began learning Java and Python through online courses and personal projects.
+                  Built the foundation of my engineering mindset through hands-on experimentation.
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Right: Values + currently learning -->
+        <div class="reveal-right space-y-6">
+
+          <h3 class="text-lg font-bold text-slate-300 flex items-center gap-2">
+            <i class="fas fa-star text-secondary text-sm"></i> What Drives Me
+          </h3>
+
+          <!-- Value cards -->
+          <div class="space-y-4">
+            <div class="glass-card p-5 flex gap-4">
+              <div class="w-10 h-10 rounded-xl bg-primary/15 flex items-center justify-center text-primary flex-shrink-0">
+                <i class="fas fa-layer-group"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold text-sm mb-1">Systems Thinking</h4>
+                <p class="text-xs text-slate-500 leading-relaxed">I care about how pieces fit together — not just making a feature work, but making the whole system better.</p>
+              </div>
+            </div>
+            <div class="glass-card p-5 flex gap-4">
+              <div class="w-10 h-10 rounded-xl bg-secondary/15 flex items-center justify-center text-secondary flex-shrink-0">
+                <i class="fas fa-terminal"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold text-sm mb-1">Clean Code</h4>
+                <p class="text-xs text-slate-500 leading-relaxed">Code is read far more than it's written. I prioritise clarity, naming, and maintainability above all.</p>
+              </div>
+            </div>
+            <div class="glass-card p-5 flex gap-4">
+              <div class="w-10 h-10 rounded-xl bg-accent/15 flex items-center justify-center text-accent flex-shrink-0">
+                <i class="fas fa-seedling"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold text-sm mb-1">Continuous Learning</h4>
+                <p class="text-xs text-slate-500 leading-relaxed">The field moves fast and so do I. Currently exploring distributed systems, Kafka, and cloud-native patterns.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Currently learning -->
+          <div class="glass-card p-5">
+            <h4 class="text-sm font-semibold text-slate-300 mb-4 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              Currently Exploring
+            </h4>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-pill">☁️ AWS / Cloud</span>
+              <span class="skill-pill">📨 Apache Kafka</span>
+              <span class="skill-pill">🦀 Rust</span>
+              <span class="skill-pill">🧠 LLM APIs</span>
+              <span class="skill-pill">📐 System Design</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="py-2"><div class="glow-divider"></div></div>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       6. CONTACT SECTION
+       ══════════════════════════════════════════════════════════ -->
+  <section id="contact" class="section-bg-alt py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+
+      <!-- Section header -->
+      <div class="text-center mb-16 reveal">
+        <span class="section-label">Let's talk</span>
+        <h2 class="text-3xl sm:text-4xl font-bold">Get In <span class="gradient-text">Touch</span></h2>
+        <p class="text-slate-500 mt-3 max-w-xl mx-auto text-sm">
+          Whether you have a project in mind, an opportunity to discuss, or just want to connect — my inbox is always open.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-12 items-start">
+
+        <!-- Contact info -->
+        <div class="reveal-left space-y-5">
+
+          <a href="mailto:gabrielleitefonseca@gmail.com" class="contact-info-item">
+            <div class="contact-icon bg-primary/15 text-primary">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div>
+              <div class="text-xs text-slate-500 mb-0.5 uppercase tracking-wider">Email</div>
+              <div class="text-sm font-semibold">gabrielleitefonseca@gmail.com</div>
+            </div>
+          </a>
+
+          <a href="https://linkedin.com/in/gabefonseca" target="_blank" rel="noopener" class="contact-info-item">
+            <div class="contact-icon bg-blue-500/15 text-blue-400">
+              <i class="fab fa-linkedin-in"></i>
+            </div>
+            <div>
+              <div class="text-xs text-slate-500 mb-0.5 uppercase tracking-wider">LinkedIn</div>
+              <div class="text-sm font-semibold">linkedin.com/in/gabefonseca</div>
+            </div>
+          </a>
+
+          <a href="https://github.com/gabefonseca" target="_blank" rel="noopener" class="contact-info-item">
+            <div class="contact-icon bg-white/8 text-slate-300">
+              <i class="fab fa-github"></i>
+            </div>
+            <div>
+              <div class="text-xs text-slate-500 mb-0.5 uppercase tracking-wider">GitHub</div>
+              <div class="text-sm font-semibold">github.com/gabefonseca</div>
+            </div>
+          </a>
+
+          <!-- Response time card -->
+          <div class="glass-card p-5 mt-4 flex items-center gap-4">
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/15 flex items-center justify-center text-emerald-400 flex-shrink-0">
+              <i class="fas fa-bolt"></i>
+            </div>
+            <div>
+              <div class="text-sm font-semibold mb-0.5">Fast Response</div>
+              <div class="text-xs text-slate-500">I typically reply within 24 hours.</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Contact Form -->
+        <div class="reveal-right">
+          <div class="glass-card p-7">
+            <h3 class="text-lg font-bold mb-6">Send a Message</h3>
+
+            <form id="contact-form" class="space-y-4" novalidate>
+
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider" for="f-name">Name</label>
+                  <input id="f-name" name="name" type="text" class="form-input" placeholder="Your name" autocomplete="name" />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider" for="f-email">Email</label>
+                  <input id="f-email" name="email" type="email" class="form-input" placeholder="you@email.com" autocomplete="email" />
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider" for="f-subject">Subject</label>
+                <input id="f-subject" name="subject" type="text" class="form-input" placeholder="What's it about?" />
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider" for="f-message">Message</label>
+                <textarea id="f-message" name="message" class="form-input" placeholder="Tell me about your project or opportunity…"></textarea>
+              </div>
+
+              <button type="submit" class="btn-primary w-full justify-center text-sm py-3">
+                <span>Send Message</span>
+                <i class="fas fa-paper-plane text-xs"></i>
+              </button>
+
+              <p id="form-status" class="text-sm" style="display:none"></p>
+
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       7. FOOTER
+       ══════════════════════════════════════════════════════════ -->
+  <footer class="py-12 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+
+        <!-- Brand -->
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold text-sm">
+            GF
+          </div>
+          <div>
+            <div class="font-bold text-sm">Gabe Fonseca</div>
+            <div class="text-xs text-slate-600">Software Engineer</div>
+          </div>
+        </div>
+
+        <!-- Copyright -->
+        <p class="text-xs text-slate-600 text-center">
+          © 2025 Gabe Fonseca. Built with <span class="text-primary">♥</span> and too much coffee.
+        </p>
+
+        <!-- Social icons -->
+        <div class="flex items-center gap-2">
+          <a href="mailto:gabrielleitefonseca@gmail.com" class="social-link" aria-label="Email">
+            <i class="fas fa-envelope"></i>
+          </a>
+          <a href="https://github.com/gabefonseca" target="_blank" rel="noopener" class="social-link" aria-label="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://linkedin.com/in/gabefonseca" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="https://twitter.com/" target="_blank" rel="noopener" class="social-link" aria-label="Twitter">
+            <i class="fab fa-x-twitter"></i>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Bottom tagline -->
+      <div class="mt-8 pt-6 border-t border-white/5 text-center">
+        <p class="text-xs text-slate-700 font-mono">
+          // Always learning. Always building. Always shipping.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ──────────────────────────────────────────────────────────
+       Scripts
+       ────────────────────────────────────────────────────────── -->
+  <script src="script.js"></script>
+
+</body>
+</html>
