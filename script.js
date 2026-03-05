@@ -17,14 +17,14 @@
   let width, height, particles = [];
 
   const CONFIG = {
-    count:       90,
-    maxRadius:   1.6,
+    count:       80,
+    maxRadius:   1.4,
     minRadius:   0.3,
-    speed:       0.25,
-    lineDistance: 120,
-    primaryColor:   [99,  102, 241],   // indigo
-    secondaryColor: [34,  211, 238],   // cyan
-    accentColor:    [168, 85,  247],   // purple
+    speed:       0.22,
+    lineDistance: 110,
+    primaryColor:   [226, 232, 240],   // silver-white
+    secondaryColor: [103, 232, 249],   // ice cyan
+    accentColor:    [148, 163, 184],   // slate
   };
 
   function resize() {
@@ -46,7 +46,7 @@
       vy:    (Math.random() - 0.5) * CONFIG.speed,
       r:     Math.random() * (CONFIG.maxRadius - CONFIG.minRadius) + CONFIG.minRadius,
       color,
-      alpha: Math.random() * 0.6 + 0.25,
+      alpha: Math.random() * 0.35 + 0.12,
     };
   }
 
@@ -68,12 +68,12 @@
         const a = particles[i], b = particles[j];
         const dist = Math.hypot(a.x - b.x, a.y - b.y);
         if (dist < CONFIG.lineDistance) {
-          const opacity = (1 - dist / CONFIG.lineDistance) * 0.18;
+          const opacity = (1 - dist / CONFIG.lineDistance) * 0.10;
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
           ctx.lineTo(b.x, b.y);
           ctx.strokeStyle = `rgba(${CONFIG.primaryColor.join(',')},${opacity})`;
-          ctx.lineWidth = 0.8;
+          ctx.lineWidth = 0.6;
           ctx.stroke();
         }
       }
