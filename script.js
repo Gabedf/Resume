@@ -234,8 +234,12 @@
 })();
 
 
-/* ─── 7. CONTACT FORM ─────────────────────────────────────── */
+/* ─── 7. CONTACT FORM (Formspree) ─────────────────────────── */
 (function initContactForm() {
+  // Sign up at https://formspree.io, create a form, and paste your
+  // endpoint here. Format: 'https://formspree.io/f/YOUR_FORM_ID'
+  const FORMSPREE_URL = 'https://formspree.io/f/mlgpryvo';
+
   const form   = document.getElementById('contact-form');
   const status = document.getElementById('form-status');
   if (!form) return;
@@ -245,11 +249,12 @@
 
     const name    = form.querySelector('[name="name"]').value.trim();
     const email   = form.querySelector('[name="email"]').value.trim();
+    const subject = form.querySelector('[name="subject"]').value.trim();
     const message = form.querySelector('[name="message"]').value.trim();
 
     // Basic validation
     if (!name || !email || !message) {
-      showStatus('Please fill in all fields.', 'error');
+      showStatus('Please fill in all required fields.', 'error');
       return;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -257,17 +262,32 @@
       return;
     }
 
-    // Simulate sending (replace with real endpoint / EmailJS etc.)
     const btn = form.querySelector('button[type="submit"]');
     btn.disabled = true;
-    btn.innerHTML = '<i class="fas fa-circle-notch fa-spin mr-2"></i>Sending…';
+    btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i><span>Sending…</span>';
 
-    setTimeout(() => {
-      showStatus('Message sent! I\'ll get back to you soon. 🚀', 'success');
-      form.reset();
-      btn.disabled = false;
-      btn.innerHTML = '<span>Send Message</span><i class="fas fa-paper-plane"></i>';
-    }, 1400);
+    fetch(FORMSPREE_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ name, email, subject, message }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.ok) {
+          showStatus("Message sent! I'll get back to you soon.", 'success');
+          form.reset();
+        } else {
+          const errMsg = data.errors ? data.errors.map(e => e.message).join(', ') : 'Something went wrong.';
+          showStatus(errMsg, 'error');
+        }
+      })
+      .catch(() => {
+        showStatus('Network error. Please try emailing me directly at gabdwork@gmail.com', 'error');
+      })
+      .finally(() => {
+        btn.disabled = false;
+        btn.innerHTML = '<span>Send Message</span><i class="fas fa-paper-plane text-xs"></i>';
+      });
   });
 
   function showStatus(msg, type) {
@@ -276,7 +296,9 @@
       ? 'mt-3 text-sm text-emerald-400'
       : 'mt-3 text-sm text-red-400';
     status.style.display = 'block';
-    setTimeout(() => { status.style.display = 'none'; }, 5000);
+    if (type !== 'success') {
+      setTimeout(() => { status.style.display = 'none'; }, 6000);
+    }
   }
 })();
 
