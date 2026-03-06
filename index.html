@@ -444,100 +444,54 @@
       <!-- Projects grid -->
       <div class="grid sm:grid-cols-2 lg:grid-cols-2 gap-6 stagger-children">
 
-        <!-- Project 1: Financial Management System -->
+        <!-- Project 1: Automatic Vehicle Classification -->
         <div class="project-card reveal">
           <div class="project-card-header" style="background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);">
-            <div class="project-icon">💰</div>
+            <div class="project-icon">🚗</div>
           </div>
           <div class="project-body">
             <div class="flex items-start justify-between mb-2">
-              <h3 class="project-title">Financial Management System</h3>
-              <span class="badge ml-2 flex-shrink-0">Backend</span>
+              <h3 class="project-title">Automatic Vehicle Classification</h3>
+              <span class="badge ml-2 flex-shrink-0">Data Engineering</span>
             </div>
             <p class="project-desc">
-              A full-stack financial tracking application with transaction management, budget analytics,
-              and monthly reporting. Featuring JWT authentication and a RESTful API.
-            </p>
-            <div class="flex flex-wrap gap-1.5 mt-auto">
-              <span class="tech-tag">Java</span>
-              <span class="tech-tag">Spring Boot</span>
-              <span class="tech-tag">PostgreSQL</span>
-              <span class="tech-tag">REST API</span>
-            </div>
-          </div>
-          <div class="project-actions">
-            <a href="#" class="project-btn project-btn-primary">
-              <i class="fas fa-external-link-alt text-xs"></i> View Project
-            </a>
-            <a href="#" class="project-btn project-btn-ghost">
-              <i class="fab fa-github"></i> GitHub
-            </a>
-          </div>
-        </div>
-
-        <!-- Project 2: Task Manager Web App -->
-        <div class="project-card reveal">
-          <div class="project-card-header" style="background: linear-gradient(135deg, #0f1810 0%, #1a1a1a 100%);">
-            <div class="project-icon">✅</div>
-          </div>
-          <div class="project-body">
-            <div class="flex items-start justify-between mb-2">
-              <h3 class="project-title">Task Manager Web App</h3>
-              <span class="badge ml-2 flex-shrink-0">Full Stack</span>
-            </div>
-            <p class="project-desc">
-              A productivity-focused task management platform with real-time updates, priority queues,
-              tagging system, and drag-and-drop kanban board interface.
-            </p>
-            <div class="flex flex-wrap gap-1.5 mt-auto">
-              <span class="tech-tag">Node.js</span>
-              <span class="tech-tag">JavaScript</span>
-              <span class="tech-tag">MongoDB</span>
-              <span class="tech-tag">REST API</span>
-            </div>
-          </div>
-          <div class="project-actions">
-            <a href="#" class="project-btn project-btn-primary">
-              <i class="fas fa-external-link-alt text-xs"></i> View Project
-            </a>
-            <a href="#" class="project-btn project-btn-ghost">
-              <i class="fab fa-github"></i> GitHub
-            </a>
-          </div>
-        </div>
-
-        <!-- Project 3: Data Analysis Dashboard -->
-        <div class="project-card reveal">
-          <div class="project-card-header" style="background: linear-gradient(135deg, #0f1a1a 0%, #1a1a1a 100%);">
-            <div class="project-icon">📊</div>
-          </div>
-          <div class="project-body">
-            <div class="flex items-start justify-between mb-2">
-              <h3 class="project-title">Data Analysis Dashboard</h3>
-              <span class="badge ml-2 flex-shrink-0">Data</span>
-            </div>
-            <p class="project-desc">
-              Interactive data exploration dashboard built with Python. Performs ETL pipelines,
-              statistical analysis, and renders dynamic visualisations from real-world datasets.
+              Automatic vehicle classification system developed in Python, using Levenshtein distance, Bag-of-Words, and business rules to standardize descriptions. The solution automated a recurring manual process in the company, reducing approximately 300 hours of operational work per year.
             </p>
             <div class="flex flex-wrap gap-1.5 mt-auto">
               <span class="tech-tag">Python</span>
-              <span class="tech-tag">Pandas</span>
-              <span class="tech-tag">Matplotlib</span>
-              <span class="tech-tag">NumPy</span>
+              <span class="tech-tag">Streamlit</span>
+              <span class="tech-tag">Snowflake</span>
+              <span class="tech-tag">Polars</span>
             </div>
           </div>
           <div class="project-actions">
-            <a href="#" class="project-btn project-btn-primary">
-              <i class="fas fa-external-link-alt text-xs"></i> View Project
-            </a>
-            <a href="#" class="project-btn project-btn-ghost">
-              <i class="fab fa-github"></i> GitHub
-            </a>
           </div>
         </div>
 
-        <!-- Project 4: Poker Simulator -->
+        <!-- Project 2: NBA Analysis Dashboard -->
+        <div class="project-card reveal">
+          <div class="project-card-header" style="background: linear-gradient(135deg, #0f1810 0%, #1a1a1a 100%);">
+            <div class="project-icon">🏀</div>
+          </div>
+          <div class="project-body">
+            <div class="flex items-start justify-between mb-2">
+              <h3 class="project-title">NBA Analysis Dashboard</h3>
+              <span class="badge ml-2 flex-shrink-0">Data Analysis</span>
+            </div>
+            <p class="project-desc">
+              NBA data analysis project developed in Python, involving the collection, cleaning, and exploration of the league’s statistical data. It uses analysis and visualization libraries to investigate performance patterns of players and teams, generating quantitative insights from advanced basketball metrics.
+            </p>
+            <div class="flex flex-wrap gap-1.5 mt-auto">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">Streamlit</span>
+              <span class="tech-tag">Polars</span>
+            </div>
+          </div>
+          <div class="project-actions">
+          </div>
+        </div>
+
+        <!-- Project 3: Poker Simulator -->
         <div class="project-card reveal">
           <div class="project-card-header" style="background: linear-gradient(135deg, #1a1010 0%, #1a1a1a 100%);">
             <div class="project-icon">🃏</div>
@@ -548,23 +502,17 @@
               <span class="badge ml-2 flex-shrink-0">Simulation</span>
             </div>
             <p class="project-desc">
-              A Monte Carlo poker hand evaluator that simulates millions of games to calculate
-              win probabilities, expected value, and optimal decision trees for Texas Hold'em.
+              Poker probability simulator developed in Python. The system calculates the winning chances of a hand using simulations based on possible combinations of the remaining cards, integrating the treys library for hand evaluation and an interactive interface built with Streamlit.
             </p>
             <div class="flex flex-wrap gap-1.5 mt-auto">
               <span class="tech-tag">Python</span>
-              <span class="tech-tag">Monte Carlo</span>
-              <span class="tech-tag">OOP</span>
-              <span class="tech-tag">Statistics</span>
+              <span class="tech-tag">Monte Carlo Simulation</span>
+              <span class="tech-tag">Streamlit</span>
+              <span class="tech-tag">Probability</span>
+              <span class="tech-tag">Treys</span>
             </div>
           </div>
           <div class="project-actions">
-            <a href="#" class="project-btn project-btn-primary">
-              <i class="fas fa-external-link-alt text-xs"></i> View Project
-            </a>
-            <a href="#" class="project-btn project-btn-ghost">
-              <i class="fab fa-github"></i> GitHub
-            </a>
           </div>
         </div>
 
@@ -750,13 +698,13 @@
         <!-- Contact info -->
         <div class="reveal-left space-y-5">
 
-          <a href="mailto:gabrielleitefonseca@gmail.com" class="contact-info-item">
+          <a href="mailto:gabdwork@gmail.com" class="contact-info-item">
             <div class="contact-icon bg-primary/15 text-primary">
               <i class="fas fa-envelope"></i>
             </div>
             <div>
               <div class="text-xs text-slate-500 mb-0.5 uppercase tracking-wider">Email</div>
-              <div class="text-sm font-semibold">gabrielleitefonseca@gmail.com</div>
+              <div class="text-sm font-semibold">gabdwork@gmail.com</div>
             </div>
           </a>
 
@@ -862,17 +810,14 @@
 
         <!-- Social icons -->
         <div class="flex items-center gap-2">
-          <a href="mailto:gabrielleitefonseca@gmail.com" class="social-link" aria-label="Email">
+          <a href="mailto:gabdwork@gmail.com" class="social-link" aria-label="Email">
             <i class="fas fa-envelope"></i>
           </a>
-          <a href="https://github.com/gabefonseca" target="_blank" rel="noopener" class="social-link" aria-label="GitHub">
+          <a href="https://github.com/Gabedf" target="_blank" rel="noopener" class="social-link" aria-label="GitHub">
             <i class="fab fa-github"></i>
           </a>
-          <a href="https://linkedin.com/in/gabefonseca" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn">
+          <a href="https://www.linkedin.com/in/gabriel-leite-fonseca/" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn">
             <i class="fab fa-linkedin-in"></i>
-          </a>
-          <a href="https://twitter.com/" target="_blank" rel="noopener" class="social-link" aria-label="Twitter">
-            <i class="fab fa-x-twitter"></i>
           </a>
         </div>
 
