@@ -151,7 +151,7 @@
     'Software Engineer',
     'Backend Developer',
     'Problem Solver',
-    'Data Enthusiast',
+    'Data Engineer',
     'System Builder',
   ];
 
